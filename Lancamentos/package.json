@@ -1,0 +1,34 @@
+{
+  "name": "fluxocaixa",
+  "version": "1.0.0",
+  "description": "Gestão de entradas e saídas do fluxo de caixa",
+  "main": "fluxocaixa_app.js",
+  "scripts": {
+    "start": "node fluxocaixa_app.js",
+    "test": "mocha --timeout 10000",
+    "swagger-autogen": "node swagger.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/george-saraiva/FluxoCaixa.git"
+  },
+  "author": "Antonio George Saraiva",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/george-saraiva/FluxoCaixa/issues"
+  },
+  "homepage": "https://github.com/george-saraiva/FluxoCaixa#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "mongoose": "^7.2.1",
+    "swagger-ui-express": "^4.6.3",
+    "winston": "^3.9.0"
+  },
+  "devDependencies": {
+    "chai": "^4.3.7",
+    "chai-http": "^4.3.0",
+    "mocha": "^10.2.0"
+  }
+}

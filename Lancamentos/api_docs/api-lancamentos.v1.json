@@ -1,0 +1,264 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "api-lancamentos",
+    "version": "1.0",
+    "description": "API de gestão de lançcamentos de fluxo de caixa",
+    "contact": {
+      "name": "George Saraiva",
+      "email": "george_saraiva@hotmail.com"
+    }
+  },
+  "host": "localhost:3000",
+  "schemes": [
+    "http"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "paths": {
+    "/lancamentos": {
+      "get": {
+        "summary": "ListarLancamentos",
+        "tags": [
+          "Lançamentos"
+        ],
+        "operationId": "get-lancamentos",
+        "description": "Obtém todos os lançamentos",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/ListaLancamentos"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/Erro"
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "CriarLancamento",
+        "operationId": "post-lancamentos",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/Lancamento"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/Erro"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/Erro"
+            }
+          }
+        },
+        "description": "Cria um novo lançamento de caixa",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/Lancamento"
+            }
+          }
+        ],
+        "tags": [
+          "Lançamentos"
+        ]
+      }
+    },
+    "/lancamentos/{id}": {
+      "get": {
+        "summary": "ListarLancamento",
+        "tags": [
+          "Lançamentos"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/Lancamento"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/Erro"
+            }
+          }
+        },
+        "operationId": "get-lancamentos-id",
+        "description": "Lista um lançamento"
+      },
+      "parameters": [
+        {
+          "type": "string",
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "description": "Identificador do lançamento",
+          "format": "uuid",
+          "pattern": "646fcd5283934ae50f756dec646fcd5283934ae50f756dec"
+        }
+      ],
+      "put": {
+        "summary": "AtualizarLancamento",
+        "operationId": "put-lancamentos-id",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/Lancamento"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/Erro"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/Erro"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/Erro"
+            }
+          }
+        },
+        "description": "Atualiza um lançamento",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/Lancamento"
+            },
+            "description": ""
+          }
+        ],
+        "tags": [
+          "Lançamentos"
+        ]
+      },
+      "delete": {
+        "summary": "ExcluirLancamento",
+        "operationId": "delete-lancamentos-id",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/Lancamento"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/Erro"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/Erro"
+            }
+          }
+        },
+        "description": "Exclui um lançamento",
+        "tags": [
+          "Lançamentos"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "Lancamento": {
+      "description": "Modelo de lançamento de fluxo de caixa",
+      "type": "object",
+      "title": "Lancamento",
+      "properties": {
+        "descricao": {
+          "type": "string",
+          "minLength": 1,
+          "example": "Recebimento de pagamento",
+          "description": "Descrição do lançamento do fluxo de caixa"
+        },
+        "valor": {
+          "type": "number",
+          "format": "float",
+          "minimum": 0,
+          "example": 125.38,
+          "description": "Valor do lançamento"
+        },
+        "tipo": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "[DC]",
+          "maxLength": 1,
+          "description": "Tipo do lançamento D = Débito / C = Crédito"
+        },
+        "dataLancamento": {
+          "type": "string",
+          "minLength": 1,
+          "example": "21/05/2023 14:00",
+          "description": "Data do lançamento"
+        }
+      },
+      "required": [
+        "descricao",
+        "valor",
+        "tipo",
+        "dataLancamento"
+      ]
+    },
+    "ListaLancamentos": {
+      "title": "ListaLancamentos",
+      "type": "array",
+      "description": "Listagem de lancamentos",
+      "items": {
+        "$ref": "#/definitions/Lancamento"
+      }
+    },
+    "Erro": {
+      "description": "Retorno de erro",
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Descrição do erro",
+          "example": "Lancamento validation failed: descricao: Path \"descricao\" is required."
+        }
+      },
+      "required": [
+        "error"
+      ],
+      "title": "Erro"
+    }
+  },
+  "basePath": "/api/v1/lancamentos",
+  "responses": {},
+  "tags": [
+    {
+      "name": "Lançamentos"
+    }
+  ]
+}
