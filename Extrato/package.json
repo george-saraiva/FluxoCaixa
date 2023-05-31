@@ -1,17 +1,16 @@
 {
-  "name": "lancamentos",
+  "name": "extrato",
   "version": "1.0.0",
-  "description": "Gestão de entradas e saídas do fluxo de caixa",
-  "main": "lancamentos_app.js",
+  "description": "Gerador de extratos de lançamentos",
+  "main": "extrato_app.js",
   "scripts": {
-    "start": "node lancamentos_app.js",
-    "test": "mocha --timeout 10000"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/george-saraiva/FluxoCaixa.git"
   },
-  "author": "Antonio George Saraiva",
+  "author": "George Saraiva",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/george-saraiva/FluxoCaixa/issues"

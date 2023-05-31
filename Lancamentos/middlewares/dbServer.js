@@ -2,20 +2,18 @@ require("dotenv").config();
 const logger = require("./logger");
 const fluxoCaixaDB = require("mongoose");
 
-exports.config = function () {
-  let database;
-  try {
-    const databaseUrl =
-      process.env.NODE_ENV == "PRD"
-        ? process.env.DATABASE_URL_PRD
-        : process.env.DATABASE_URL_DEV;
+exports.config = async function () {
+  const databaseUrl =
+    process.env.NODE_ENV == "PRD"
+      ? process.env.DATABASE_URL_PRD
+      : process.env.DATABASE_URL_DEV;
 
-    database = fluxoCaixaDB.connect(databaseUrl);
-  } catch (err) { 
-    logger.error(err);
+  try {
+    return await fluxoCaixaDB.connect(databaseUrl);
+  } catch (error) {
+    logger.error(error);
+    return;
   }
 
   logger.debug("Connectado ao banco de dados");
-
-  return database;
 };

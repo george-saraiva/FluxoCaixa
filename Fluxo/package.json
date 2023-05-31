@@ -1,0 +1,22 @@
+{
+  "name": "fluxo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "fluxo_app.js",
+  "scripts": {
+    "start": "node fluxo_app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/george-saraiva/FluxoCaixa.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/george-saraiva/FluxoCaixa/issues"
+  },
+  "homepage": "https://github.com/george-saraiva/FluxoCaixa#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
